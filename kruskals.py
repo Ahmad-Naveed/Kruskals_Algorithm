@@ -5,8 +5,7 @@ import networkx as nx
 
 
 def make_graph():
-    # identical graph as the YouTube video: https://youtu.be/71UQH7Pr9kU
-    # tuple = (cost, n1, n2)
+    # tuple = (weight, n1, n2)
     return {
         'A': [(9, 'B', 'A'), (8, 'C', 'A'), (12, 'D', 'A'), (3, 'E', 'A'), (15, 'F', 'A')],
         'B': [(9, 'A', 'B'), (5, 'C', 'B'), (6, 'D', 'B'), (13, 'E', 'B'), (10, 'F', 'B')],
@@ -33,21 +32,21 @@ def conv_char(c):
 
 
 def kruskals(G):
-    total_cost = 0
+    total_weight = 0
     MST = []
 
     num_nodes, edges = load_edges(G)
     uf = unionfind(num_nodes)
 
     for edge in edges:
-        cost, n1, n2 = edge[0], edge[1], edge[2]
+        weight, n1, n2 = edge[0], edge[1], edge[2]
 
         if not uf.issame(conv_char(n1), conv_char(n2)):
-            total_cost += cost
+            total_weight += weight
             uf.unite(conv_char(n1), conv_char(n2))
-            MST.append((n1, n2, cost))
+            MST.append((n1, n2, weight))
 
-    return MST, total_cost
+    return MST, total_weight
 
 
 def draw_graph(MST):
@@ -67,14 +66,14 @@ def draw_graph(MST):
 
 def main():
     G = make_graph()
-    MST, total_cost = kruskals(G)
+    MST, total_weight = kruskals(G)
 
     print("Edges of tree in order they are added:")
     print()
     for i, edge in enumerate(MST, start=1):
         print(f"{i}. Edge {edge[0]},{edge[1]} (Weight: {edge[2]})")
     print()
-    print(f'Total weight/length: {total_cost}')
+    print(f'Total weight/length: {total_weight}')
     print()
 
     draw_graph(MST)
