@@ -14,9 +14,12 @@ def make_graph():
         'E': [(16, 'D', 'E'), (14, 'C', 'E'), (13, 'B', 'E'), (3, 'A', 'E'), (7, 'F', 'E')],
         'F': [(7, 'E', 'F'), (11, 'D', 'F'), (2, 'C', 'F'), (10, 'B', 'F'), (15, 'A', 'F')],
     }
-    ''' Network (G, w) with    
+    ''' Network (G, w):
+    
     Vertices - V(G) = {a, b, c, d, e, f}
+    
     Edges - E(G) = {ab, ac, ad, ae, af, bc, bd, be, bf, cd, ce, cf, de, df, ef}
+    
     Weights - w(ab) = 9, w(bc) = 5, w(ce) = 14, w(ac) = 8, w(bd) = 6, w(cf) = 2, w(ad) = 12, w(be) = 13, w(de) = 16, w(ae) = 3, w(bf) = 10, w(df) = 11, w(af) = 15, w(cd) = 4, w(ef) = 7 '''
 
 
